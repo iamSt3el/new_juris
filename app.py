@@ -64,7 +64,7 @@ if "chat_history" not in st.session_state:
 def concatenate_chat_history(chat_history):
     concatenated_history = ""
     for message in chat_history:
-        if isinstance(message, dict):  # Check if message is a dictionary
+        if isinstance(message, dict):
             if message.get("role") == "user":
                 concatenated_history += f"user: {message.get('content')}\n"
             elif message.get("role") == "assistant":
@@ -79,7 +79,6 @@ if "messages" not in st.session_state.keys():
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.write(message["content"])
-# Use markdown with CSS to position the button
 
 def core(user_question):
     if st.session_state.messages[-1]["role"] != "assistant":
@@ -126,7 +125,6 @@ for pro in example_prompts:
             st.write(pro)
         core(pro)
 
-        # You can then pass 'prompt' as input to your chatbot function for processing
 
 st.sidebar.title("To Clear Chat History")
 def clear_chat_history():
@@ -141,19 +139,4 @@ if prompt := st.chat_input():
         st.write(prompt)
     core(prompt)
 
-# Generate a new response if last message is not from assistant
-#if st.session_state.messages[-1]["role"] != "assistant":
-#    with st.chat_message("assistant"):
-#        with st.spinner("Thinking..."):
-#            #st.session_state.messages.append(prompt)
-#            history = concatenate_chat_history(st.session_state.messages)
-#            response = user_input(history)
-#            placeholder = st.empty()
-#            full_response = ''
-#            for item in response:
-#                full_response += item.text
-#                placeholder.markdown(full_response)
-#            placeholder.markdown(full_response)
-#    message = {"role": "assistant", "content": full_response}
-#    st.session_state.messages.append(message)
 
