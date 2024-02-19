@@ -21,7 +21,7 @@ def user_input(user_question, history):
     Question: {question}
 
     """
-    embeddings = GoogleGenerativeAIEmbeddings(model = "models/embedding-001", google_api_key="AIzaSyDmFYX77xebjkZppD7FzBtf3qqqrlmAeGo")
+    embeddings = GoogleGenerativeAIEmbeddings(model = "models/embedding-001", google_api_key="YOUR_API_KEY")
     
     new_db = FAISS.load_local("faiss_index", embeddings)
     docs = new_db.similarity_search(user_question, k=5)
